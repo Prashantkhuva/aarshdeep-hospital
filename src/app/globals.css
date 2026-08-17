@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-padding-top: 6rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: #f3f1e9;
+  color: #1d2b27;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: #143c36;
+  color: #f3f1e9;
+}
+
+:focus-visible {
+  outline: 2px solid #b08a46;
+  outline-offset: 3px;
+}
+
+/* Preloader — curved liquid edge trailing the sheet as it lifts
+   (flowiee.com style: lip leads/trails the wipe for a softer feel) */
+.preloader-sheet::after,
+.page-transition::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: -5%;
+  width: 110%;
+  height: 9vh;
+  background-color: #143c36;
+  border-radius: 0 0 50% 50% / 0 0 100% 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse {
+    animation: none;
+  }
+}
+
+.header-surface {
+  transition: background-color 0.45s ease, backdrop-filter 0.45s ease,
+    box-shadow 0.45s ease;
+}
+
+.header-inner {
+  border-color: rgba(20, 60, 54, 0.12);
+  background-color: rgba(243, 241, 233, 0.55);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px -18px rgba(20, 60, 54, 0.25);
+  transition: background-color 0.45s ease, backdrop-filter 0.45s ease,
+    box-shadow 0.45s ease, border-color 0.45s ease;
+}
+
+.header-surface.is-scrolled .header-inner {
+  border-color: rgba(20, 60, 54, 0.16);
+  background-color: rgba(243, 241, 233, 0.85);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  backdrop-filter: blur(18px) saturate(1.4);
+  box-shadow: 0 12px 32px -20px rgba(20, 60, 54, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header-surface,
+  .header-inner {
+    transition: none;
+  }
+}
+
+.nav-indicator {
+  transition: left 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease;
+}
+
+/* Premium gold sheen sweep on primary buttons */
+.btn-sheen {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn-sheen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(243, 241, 233, 0.4) 50%,
+    transparent 60%
+  );
+  transform: translateX(-130%);
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.btn-sheen:hover::after {
+  transform: translateX(130%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-indicator {
+    transition: none;
+  }
+
+  .btn-sheen::after {
+    transition: none;
+  }
+}
